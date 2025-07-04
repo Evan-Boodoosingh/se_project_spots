@@ -15,11 +15,14 @@
   font-style: Medium;
   font-size: 20px;
   line-height: 1.2;
-
 }
 
 .card__title {
   margin: 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  min-width: 350px;
 }
 
 .card__like-btn {
@@ -31,8 +34,14 @@
   opacity: 40%;
 }
 
+.card__like-btn:hover {
+  opacity: 100%;
+}
+
 @media screen and (max-width: 627px) {
   .card__image {
-    height: 288px;
+    width: 288px;
+    height: 318px;
   }
+
 }
