@@ -17,4 +17,4 @@ an image sharing site
 
 this is deployed to GitHub pages
 
-- Deployment link:
+- Deployment link: https://evan-boodoosingh.github.io/se_project_spots/
