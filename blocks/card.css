@@ -11,9 +11,7 @@
   align-items: center;
   justify-content: space-between;
   margin-top: 12px;
-  font-family: Poppins;
   font-weight: 500;
-  font-style: Medium;
   font-size: 20px;
   line-height: 1.2;
 }
@@ -24,10 +22,13 @@
   white-space: nowrap;
   overflow: hidden;
   max-width: 353px;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1.2;
 }
 
 .card__like-btn {
-  background-image: url(../images/like.svg);
+  background-image: url(../images/blike.svg);
   width: 23px;
   height: 20px;
   border: none;
@@ -48,5 +49,6 @@
 
   .card__title {
     max-width: 238px;
+    font-size: 16px;
   }
 }

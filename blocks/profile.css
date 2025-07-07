@@ -31,9 +31,7 @@
 
 .profile__description {
   margin: 0;
-  font-family: Poppins;
   font-weight: 500;
-  font-style: Medium;
   font-size: 16px;
   line-height: 1;
   color: #212121;
@@ -51,12 +49,13 @@
   border: none;
   color: #212121;
   opacity: 70%;
-  font-family: Poppins;
   font-weight: 500;
-  font-style: Medium;
   font-size: 16px;
   line-height: 1;
   cursor: pointer;
+  display: flex;
+  gap: 8px;
+  padding: 0;
 }
 
 .profile__edit-btn:hover {
@@ -69,9 +68,7 @@
   height: 52px;
   background-color: #212121;
   color: #fff;
-  font-family: Poppins;
   font-weight: 500;
-  font-style: Medium;
   font-size: 16px;
   line-height: 1;
   margin-top: auto;
@@ -79,8 +76,10 @@
   justify-content: center;
   align-items: center;
   gap: 8px;
+  border: none;
   border-radius: 8px;
   cursor: pointer;
+
 }
 
 .profile__add-btn:hover {
