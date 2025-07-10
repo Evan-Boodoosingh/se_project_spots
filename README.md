@@ -18,3 +18,7 @@ an image sharing site
 this is deployed to GitHub pages
 
 - Deployment link: https://evan-boodoosingh.github.io/se_project_spots/
+
+## Video
+
+- link: https://drive.google.com/file/d/1cafI3gQT_NCz4Aq3tyBZCJjtuxv_cyX6/view?usp=drive_link
