@@ -45,7 +45,6 @@
 
 .modal__title {
   margin: 0 0 32px;
-  font-family: Poppins;
   font-weight: 500;
   font-size: 32px;
   line-height: 1;
@@ -58,7 +57,6 @@
 
 .modal__lable {
   margin: 0 0 32px;
-  font-family: Poppins;
   font-weight: 500;
   font-size: 16px;
   line-height: 1.1;
@@ -70,7 +68,6 @@
   margin: 8px 0 0;
   width: 100%;
   padding: 16px 12px;
-  font-family: Poppins;
   font-weight: 500;
   font-size: 20px;
   line-height: 1;
@@ -93,7 +90,6 @@
   max-width: 156px;
   width: 100%;
   padding: 18px 0;
-  font-family: Poppins;
   font-weight: 500;
   font-size: 16px;
   line-height: 1;
@@ -122,7 +118,7 @@
     padding: 12px;
   }
 
-  .modal__close-btn{
+  .modal__close-btn {
     top: 20px;
     right: 20px;
   }
