@@ -106,6 +106,7 @@
 @media screen and (max-width: 630px) {
   .modal__title {
     font-size: 20px;
+    padding-top: 10px;
   }
 
   .modal__input {
@@ -119,7 +120,9 @@
   }
 
   .modal__close-btn {
-    top: 20px;
-    right: 20px;
+    top: 12px;
+    right: 12px;
+    background-position: center;
+    background-repeat: no-repeat;
   }
 }
