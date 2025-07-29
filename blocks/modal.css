@@ -140,7 +140,7 @@
   font-weight: 500;
   font-size: 20px;
   line-height: 1.2;
-  width: 198px;
+  width: fit-content;
   background-color: #212121;
   border-radius: 8px;
   padding: 4px 8px;
