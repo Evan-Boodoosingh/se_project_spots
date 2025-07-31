@@ -15,7 +15,6 @@
   transition: visibility 0s linear 0.5s, opacity 0.5s linear;
 }
 
-
 .modal_is-opened {
   visibility: visible;
   visibility: visible;
@@ -145,6 +144,10 @@
   border-radius: 8px;
   padding: 4px 8px;
   margin: 8px 0 0;
+  max-width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 @media screen and (max-width: 630px) {
@@ -170,7 +173,7 @@
     background-repeat: no-repeat;
   }
 
-  .modal__close-btn_type_preview{
+  .modal__close-btn_type_preview {
     top: -48px;
     right: 0;
     margin-bottom: 8px;

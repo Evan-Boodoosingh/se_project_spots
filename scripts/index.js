@@ -49,7 +49,7 @@ const newPostBtn = document.querySelector(".profile__add-btn");
 const newPostModal = document.querySelector("#new-post-modal");
 const newPostCloseBtn = newPostModal.querySelector(".modal__close-btn");
 const newPostFormEl = newPostModal.querySelector(".modal__form");
-const newPostNameInput = newPostModal.querySelector("#card-image-input");
+const newPostImageInput = newPostModal.querySelector("#card-image-input");
 const newPostDescriptionInput = newPostModal.querySelector(
   "#card-caption-input"
 );
@@ -69,7 +69,7 @@ const cardTemplate = document
 const cardsList = document.querySelector(".cards__list");
 
 function getCardElement(data) {
-  const cardElement = cardTemplate.cloneNode(true);
+  let cardElement = cardTemplate.cloneNode(true);
   const cardTitleEl = cardElement.querySelector(".card__title");
   const cardImageEl = cardElement.querySelector(".card__image");
 
@@ -144,13 +144,14 @@ function handleAddCardSubmit(evt) {
 
   const inputValues = {
     name: newPostDescriptionInput.value,
-    link: newPostNameInput.value,
+    link: newPostImageInput.value,
   };
 
   const cardElement = getCardElement(inputValues);
   cardsList.prepend(cardElement);
 
   closeModal(newPostModal);
+  evt.target.reset()
 }
 
 newPostFormEl.addEventListener("submit", handleAddCardSubmit);
