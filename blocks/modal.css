@@ -79,6 +79,7 @@
   font-size: 16px;
   line-height: 1.1;
   color: #212121b2;
+  display: block;
 }
 
 .modal__input {
@@ -104,6 +105,16 @@
   padding: 0 0 0 12px;
 }
 
+.modal__error {
+  display: block;
+  color: #ff0000b2;
+  font-family: Poppins;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.1;
+  margin-top: 8px;
+}
+
 .modal__submit-btn {
   max-width: 156px;
   width: 100%;
@@ -114,6 +125,7 @@
   background-color: #212121;
   color: #fcf5e5;
   border-radius: 8px;
+  border: 1px solid;
 }
 
 .modal__submit-btn:hover {

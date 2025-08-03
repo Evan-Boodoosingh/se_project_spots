@@ -160,3 +160,4 @@ initialCards.forEach(function (item) {
   const cardElement = getCardElement(item);
   cardsList.append(cardElement);
 });
+
