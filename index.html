@@ -55,7 +55,7 @@
         <div class="modal__container">
           <button type="button" class="modal__close-btn"></button>
           <h2 class="modal__title">Edit profile</h2>
-          <form class="modal__form">
+          <form class="modal__form" id="edit-profile-form" novalidate>
             <label for="profile-name-input" class="modal__lable">
               Name
               <input
@@ -67,7 +67,7 @@
                 maxlength="40"
                 required
               />
-              <span class="modal__error"></span>
+              <span id="profile-name-input-error" class="modal__error"></span>
             </label>
             <label for="profile-description-input" class="modal__lable">
               Description
@@ -80,7 +80,7 @@
                 maxlength="200"
                 required
               />
-              <span class="modal__error"></span>
+              <span id="profile-description-input-error" class="modal__error"></span>
             </label>
             <button type="submit" class="modal__submit-btn">Save</button>
           </form>
@@ -90,7 +90,7 @@
         <div class="modal__container">
           <button type="button" class="modal__close-btn"></button>
           <h2 class="modal__title">New post</h2>
-          <form class="modal__form">
+          <form class="modal__form" id="new-post-form" novalidate>
             <label for="card-image-input" class="modal__lable">
               Image link
               <input
@@ -100,7 +100,7 @@
                 placeholder="Paste a link to the picture"
                 required
               />
-              <span class="modal__error"></span>
+              <span id="card-image-input-error" class="modal__error"></span>
             </label>
             <label for="card-caption-input" class="modal__lable">
               Caption
@@ -113,7 +113,7 @@
                 maxlength="30"
                 required
               />
-              <span class="modal__error"></span>
+              <span id="card-caption-input-error" class="modal__error"></span>
             </label>
             <button type="submit" class="modal__submit-btn">Save</button>
           </form>
