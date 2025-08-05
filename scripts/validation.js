@@ -49,10 +49,10 @@ const disableButton = (buttonEl, config) => {
   buttonEl.classList.add(config.inactiveButtonClass);
 };
 
-//help
+//i need help here to help i want to remove thee red border im thinking classList.remove
 const resetValidation = (formEl, inputList, config) => {
-inputList.forEach((input) => {
-  hideInputError(formEl, input, "", config);
+inputList.forEach((input) => { hideInputError(formEl, input, config)
+  //dot told me to add this to make it work but why dose it hideInputError(formEl, input, "", config);
 });
 };
 

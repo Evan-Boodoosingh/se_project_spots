@@ -38,7 +38,8 @@ const editProfileBtn = document.querySelector(".profile__edit-btn");
 const editProfileModal = document.querySelector("#edit-profile-modal");
 const editProfileCloseBtn = editProfileModal.querySelector(".modal__close-btn");
 const editProfileFormEl = editProfileModal.querySelector(".modal__form");
-const editProfileSubmitBtn = editProfileModal.querySelector(".modal__submit-btn");
+const editProfileSubmitBtn =
+  editProfileModal.querySelector(".modal__submit-btn");
 const editProfileNameInput = editProfileModal.querySelector(
   "#profile-name-input"
 );
@@ -106,14 +107,22 @@ previewModalCloseBtn.addEventListener("click", function () {
 
 function openModal(modal) {
   modal.classList.add("modal_is-opened");
+  //document.addEventListener(handleEscapeKey);
 }
-
+//can i add the escape and click to exit here
+//if so how???
 function closeModal(modal) {
   modal.classList.remove("modal_is-opened");
+  document.removeEventListener(handleEscapeKey);
 }
 
+//function handleEscapeKey(event) {}
+
 editProfileBtn.addEventListener("click", function () {
-  resetValidation(editProfileFormEl, [editProfileNameInput, editDescriptionInput]) // fix
+  resetValidation(editProfileFormEl, [
+    editProfileNameInput,
+    editDescriptionInput,
+  ], settings); // fix
   openModal(editProfileModal);
   editProfileNameInput.value = profileNameEl.textContent;
   editDescriptionInput.value = profileDescriptionEl.textContent;
@@ -138,7 +147,7 @@ function handleProfileFormSubmit(evt) {
   profileDescriptionEl.textContent = editDescriptionInput.value;
 
   closeModal(editProfileModal);
-  disableButton(editProfileSubmitBtn, settings)
+  disableButton(editProfileSubmitBtn, settings);
 }
 
 editProfileFormEl.addEventListener("submit", handleProfileFormSubmit);
@@ -154,9 +163,8 @@ function handleAddCardSubmit(evt) {
   const cardElement = getCardElement(inputValues);
   cardsList.prepend(cardElement);
 
-
-  evt.target.reset()
-  disableButton(newPostSubmitBtn, settings)
+  evt.target.reset();
+  disableButton(newPostSubmitBtn, settings);
   closeModal(newPostModal);
 }
 
@@ -167,29 +175,27 @@ initialCards.forEach(function (item) {
   cardsList.append(cardElement);
 });
 
+//can i make this a new independent function that i can assine to each individual modal and if so why would i do that
+//added like this becouse every time i hit escape it did not register on the modol onlythe input
 
-// TODO:
-// 1. Create an eventListner for keydown event
-// 2. console.log which key is pressed
-// 3. Determine if it is the escape key
-// 4. If it is we will close the modal
+// pick up here to find out what modal is open and how to add it to handlEscapeKey function then pass that to open modle
+document.addEventListener("keyup", function (event) {
+  if (event.key === "Escape") {
+    const openedModal = document.querySelector(".modal_is-opened");
 
-
-document.addEventListener('keyup', function(event) {
-  if (event.key === 'Escape') {
-    console.log('Escape key pressed!');
-    //refactor: Determine which modal is open and close
-    closeModal(newPostModal)
-    closeModal(editProfileModal)
-    closeModal(previewModal)
+    closeModal(openedModal);
   }
-
 });
 
-document.addEventListener('mousedown', function(event) {
-  if (event.target.classList.contains('modal')) {
-    closeModal(newPostModal);
-    closeModal(editProfileModal);
-    closeModal(previewModal);
-  }
+
+
+// i think that this selects aall modals and not the container
+const modals = document.querySelectorAll(".modal");
+
+modals.forEach((modal) => {
+  modal.addEventListener("click", (event) => {
+    if (event.target.classList.contains("modal")) {
+      closeModal(modal);
+    }
+  });
 });
