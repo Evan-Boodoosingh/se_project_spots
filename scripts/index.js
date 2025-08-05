@@ -38,6 +38,7 @@ const editProfileBtn = document.querySelector(".profile__edit-btn");
 const editProfileModal = document.querySelector("#edit-profile-modal");
 const editProfileCloseBtn = editProfileModal.querySelector(".modal__close-btn");
 const editProfileFormEl = editProfileModal.querySelector(".modal__form");
+const editProfileSubmitBtn = editProfileModal.querySelector(".modal__submit-btn");
 const editProfileNameInput = editProfileModal.querySelector(
   "#profile-name-input"
 );
@@ -49,6 +50,7 @@ const newPostBtn = document.querySelector(".profile__add-btn");
 const newPostModal = document.querySelector("#new-post-modal");
 const newPostCloseBtn = newPostModal.querySelector(".modal__close-btn");
 const newPostFormEl = newPostModal.querySelector(".modal__form");
+const newPostSubmitBtn = newPostModal.querySelector(".modal__submit-btn");
 const newPostImageInput = newPostModal.querySelector("#card-image-input");
 const newPostDescriptionInput = newPostModal.querySelector(
   "#card-caption-input"
@@ -111,6 +113,7 @@ function closeModal(modal) {
 }
 
 editProfileBtn.addEventListener("click", function () {
+  resetValidation(editProfileFormEl, [editProfileNameInput, editDescriptionInput]) // fix
   openModal(editProfileModal);
   editProfileNameInput.value = profileNameEl.textContent;
   editDescriptionInput.value = profileDescriptionEl.textContent;
@@ -135,6 +138,7 @@ function handleProfileFormSubmit(evt) {
   profileDescriptionEl.textContent = editDescriptionInput.value;
 
   closeModal(editProfileModal);
+  disableButton(editProfileSubmitBtn, settings)
 }
 
 editProfileFormEl.addEventListener("submit", handleProfileFormSubmit);
@@ -150,8 +154,10 @@ function handleAddCardSubmit(evt) {
   const cardElement = getCardElement(inputValues);
   cardsList.prepend(cardElement);
 
-  closeModal(newPostModal);
+
   evt.target.reset()
+  disableButton(newPostSubmitBtn, settings)
+  closeModal(newPostModal);
 }
 
 newPostFormEl.addEventListener("submit", handleAddCardSubmit);
@@ -161,3 +167,29 @@ initialCards.forEach(function (item) {
   cardsList.append(cardElement);
 });
 
+
+// TODO:
+// 1. Create an eventListner for keydown event
+// 2. console.log which key is pressed
+// 3. Determine if it is the escape key
+// 4. If it is we will close the modal
+
+
+document.addEventListener('keyup', function(event) {
+  if (event.key === 'Escape') {
+    console.log('Escape key pressed!');
+    //refactor: Determine which modal is open and close
+    closeModal(newPostModal)
+    closeModal(editProfileModal)
+    closeModal(previewModal)
+  }
+
+});
+
+document.addEventListener('mousedown', function(event) {
+  if (event.target.classList.contains('modal')) {
+    closeModal(newPostModal);
+    closeModal(editProfileModal);
+    closeModal(previewModal);
+  }
+});
