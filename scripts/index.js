@@ -107,13 +107,13 @@ previewModalCloseBtn.addEventListener("click", function () {
 
 function openModal(modal) {
   modal.classList.add("modal_is-opened");
-  //document.addEventListener(handleEscapeKey);
+  document.addEventListener("keydown", handleEscapeKey);
 }
 //can i add the escape and click to exit here
 //if so how???
 function closeModal(modal) {
   modal.classList.remove("modal_is-opened");
-  document.removeEventListener(handleEscapeKey);
+  document.removeEventListener("keydown", handleEscapeKey);
 }
 
 //function handleEscapeKey(event) {}
@@ -179,13 +179,22 @@ initialCards.forEach(function (item) {
 //added like this becouse every time i hit escape it did not register on the modol onlythe input
 
 // pick up here to find out what modal is open and how to add it to handlEscapeKey function then pass that to open modle
-document.addEventListener("keyup", function (event) {
+function handleEscapeKey(event){
   if (event.key === "Escape") {
     const openedModal = document.querySelector(".modal_is-opened");
 
     closeModal(openedModal);
   }
-});
+
+}
+
+// document.addEventListener("keyup", function (event) {
+  // if (event.key === "Escape") {
+    // const openedModal = document.querySelector(".modal_is-opened");
+
+    // closeModal(openedModal);
+  // }
+// });
 
 
 
