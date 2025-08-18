@@ -1,3 +1,6 @@
+import "./index.css";
+import { enableValidation, settings, resetValidation, disableButton} from "../scripts/validation.js";
+
 const initialCards = [
   {
     name: "CoCo the CooCoo Cat!",
@@ -208,3 +211,6 @@ modals.forEach((modal) => {
     }
   });
 });
+
+
+enableValidation(settings);

@@ -7,30 +7,37 @@
     <meta name="description" content="a website to share and edit photos" />
     <meta name="auther" content="Evan Boodoosingh" />
     <meta name="keywords" content="html, css, image sharing, image editing" />
-    <link rel="stylesheet" href="./pages/index.css" />
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
   </head>
   <body>
     <div class="page">
       <header class="header">
-        <img src="./images/logo.svg" alt="Spot logo" class="header__logo" />
+        <img
+          src="<%=require('./images/logo.svg')%>"
+          alt="Spot logo"
+          class="header__logo"
+        />
       </header>
       <main class="content">
         <section class="profile page__section">
           <img
             src="https://lh3.googleusercontent.com/d/109JkZTZPWOjN-5DzGvjD6t_gOrwS8KWv"
-            alt="Bessie Coleman"
+            alt="Evan Boodoosingh"
             class="profile__avatar"
           />
           <div class="profile__column">
             <h1 class="profile__name">Evan Boodoosingh</h1>
             <p class="profile__description">Software Engineer</p>
             <button type="button" class="profile__edit-btn">
-              <img src="./images/pencil.svg" alt="pencil icon" />Edit Profile
+              <img
+                src="<%=require('./images/pencil.svg')%>"
+                alt="pencil icon"
+              />Edit Profile
             </button>
           </div>
           <button type="button" class="profile__add-btn">
-            <img src="./images/plus.svg" alt="plus icon" />New Post
+            <img src="<%=require('./images/plus.svg')%>" alt="plus icon" />New
+            Post
           </button>
         </section>
         <section class="cards page__section">
@@ -80,7 +87,10 @@
                 maxlength="200"
                 required
               />
-              <span id="profile-description-input-error" class="modal__error"></span>
+              <span
+                id="profile-description-input-error"
+                class="modal__error"
+              ></span>
             </label>
             <button type="submit" class="modal__submit-btn">Save</button>
           </form>
@@ -131,7 +141,5 @@
         </div>
       </div>
     </div>
-    <script src="./scripts/index.js"></script>
-    <script src="./scripts/validation.js"></script>
   </body>
 </html>
