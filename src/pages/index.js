@@ -1,41 +1,65 @@
 import "./index.css";
-import { enableValidation, settings, resetValidation, disableButton} from "../scripts/validation.js";
+import {
+  enableValidation,
+  settings,
+  resetValidation,
+  disableButton,
+} from "../scripts/validation.js";
+import Api from "../utils/Api.js";
 
-const initialCards = [
-  {
-    name: "CoCo the CooCoo Cat!",
-    link: "https://lh3.googleusercontent.com/d/1LyIo52cf-KpSJAhErnJ0zx4lZV6JCa_S",
-  },
-  {
-    name: "Gucci got money!",
-    link: "https://lh3.googleusercontent.com/d/1lyPfagxVRzBso9HMW7jbCjrDJTs-n_K2",
-  },
+// const initialCards = [
+//   {
+//     name: "CoCo the CooCoo Cat!",
+//     link: "https://lh3.googleusercontent.com/d/1LyIo52cf-KpSJAhErnJ0zx4lZV6JCa_S",
+//   },
+//   {
+//     name: "Gucci got money!",
+//     link: "https://lh3.googleusercontent.com/d/1lyPfagxVRzBso9HMW7jbCjrDJTs-n_K2",
+//   },
 
-  {
-    name: "Best Birthday Yet!",
-    link: "https://lh3.googleusercontent.com/d/1ZnhMGXnS83fbill3s2umN2FDBsHcYJci",
-  },
+//   {
+//     name: "Best Birthday Yet!",
+//     link: "https://lh3.googleusercontent.com/d/1ZnhMGXnS83fbill3s2umN2FDBsHcYJci",
+//   },
 
-  {
-    name: "Korra the Dog.",
-    link: "https://lh3.googleusercontent.com/d/1Wg3tQj48Funmuebkpfpa492sd3Stez2g",
-  },
+//   {
+//     name: "Korra the Dog.",
+//     link: "https://lh3.googleusercontent.com/d/1Wg3tQj48Funmuebkpfpa492sd3Stez2g",
+//   },
 
-  {
-    name: "Flowing through space and time.",
-    link: "https://lh3.googleusercontent.com/d/1eaP1R2swi3v3l9Nqwo2dsw6m2NfzqlWk",
-  },
+//   {
+//     name: "Flowing through space and time.",
+//     link: "https://lh3.googleusercontent.com/d/1eaP1R2swi3v3l9Nqwo2dsw6m2NfzqlWk",
+//   },
 
-  {
-    name: "I think we found a spellbook...",
-    link: "https://lh3.googleusercontent.com/d/13i49W5fGNremTb95izNCElcjEeazrjkW",
-  },
+//   {
+//     name: "I think we found a spellbook...",
+//     link: "https://lh3.googleusercontent.com/d/13i49W5fGNremTb95izNCElcjEeazrjkW",
+//   },
 
-  {
-    name: "My spooky family!",
-    link: "https://lh3.googleusercontent.com/d/1MbKOi435wYzyexfZ1gmh4HOffkG6fhqU",
+//   {
+//     name: "My spooky family!",
+//     link: "https://lh3.googleusercontent.com/d/1MbKOi435wYzyexfZ1gmh4HOffkG6fhqU",
+//   },
+// ];
+
+const api = new Api({
+  baseUrl: "https://around-api.en.tripleten-services.com/v1",
+  headers: {
+    authorization: "397ad35c-b1dc-4afd-a845-5f2004b6d0d1", // Replace with your actual token
+    "Content-Type": "application/json",
   },
-];
+});
+
+api
+  .getInitialCards()
+  .then((cards) => {
+    cards.forEach((item) => {
+      const cardElement = getCardElement(item);
+      cardsList.append(cardElement);
+    });
+  })
+  .catch(console.error);
 
 const editProfileBtn = document.querySelector(".profile__edit-btn");
 const editProfileModal = document.querySelector("#edit-profile-modal");
@@ -122,10 +146,11 @@ function closeModal(modal) {
 //function handleEscapeKey(event) {}
 
 editProfileBtn.addEventListener("click", function () {
-  resetValidation(editProfileFormEl, [
-    editProfileNameInput,
-    editDescriptionInput,
-  ], settings); // fix
+  resetValidation(
+    editProfileFormEl,
+    [editProfileNameInput, editDescriptionInput],
+    settings
+  ); // fix
   openModal(editProfileModal);
   editProfileNameInput.value = profileNameEl.textContent;
   editDescriptionInput.value = profileDescriptionEl.textContent;
@@ -173,33 +198,30 @@ function handleAddCardSubmit(evt) {
 
 newPostFormEl.addEventListener("submit", handleAddCardSubmit);
 
-initialCards.forEach(function (item) {
-  const cardElement = getCardElement(item);
-  cardsList.append(cardElement);
-});
+// initialCards.forEach(function (item) {
+//   const cardElement = getCardElement(item);
+//   cardsList.append(cardElement);
+// });
 
 //can i make this a new independent function that i can assine to each individual modal and if so why would i do that
 //added like this becouse every time i hit escape it did not register on the modol onlythe input
 
 // pick up here to find out what modal is open and how to add it to handlEscapeKey function then pass that to open modle
-function handleEscapeKey(event){
+function handleEscapeKey(event) {
   if (event.key === "Escape") {
     const openedModal = document.querySelector(".modal_is-opened");
 
     closeModal(openedModal);
   }
-
 }
 
 // document.addEventListener("keyup", function (event) {
-  // if (event.key === "Escape") {
-    // const openedModal = document.querySelector(".modal_is-opened");
+// if (event.key === "Escape") {
+// const openedModal = document.querySelector(".modal_is-opened");
 
-    // closeModal(openedModal);
-  // }
+// closeModal(openedModal);
+// }
 // });
-
-
 
 // i think that this selects aall modals and not the container
 const modals = document.querySelectorAll(".modal");
@@ -211,6 +233,5 @@ modals.forEach((modal) => {
     }
   });
 });
-
 
 enableValidation(settings);
