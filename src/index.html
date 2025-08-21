@@ -20,11 +20,19 @@
       </header>
       <main class="content">
         <section class="profile page__section">
-          <img
-            src="https://lh3.googleusercontent.com/d/109JkZTZPWOjN-5DzGvjD6t_gOrwS8KWv"
-            alt="Evan Boodoosingh"
-            class="profile__avatar"
-          />
+          <div class="profile__avatar-container">
+            <img
+              src="https://lh3.googleusercontent.com/d/109JkZTZPWOjN-5DzGvjD6t_gOrwS8KWv"
+              alt="Evan Boodoosingh"
+              class="profile__avatar"
+            />
+            <button class="profile__avatar-btn">
+              <img
+                src="<%=require('./images/pen-white.svg')%>"
+                alt="white pencil"
+              />
+            </button>
+          </div>
           <div class="profile__column">
             <h1 class="profile__name">Evan Boodoosingh</h1>
             <p class="profile__description">Software Engineer</p>

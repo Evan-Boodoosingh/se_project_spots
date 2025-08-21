@@ -52,14 +52,21 @@ const api = new Api({
 });
 
 api
-  .getInitialCards()
-  .then((cards) => {
+  .getAppInfo()
+  .then(([cards, users]) => {
+    // Update profile info
+    profileNameEl.textContent = users.name;
+    profileDescriptionEl.textContent = users.about;
+    profilePhotoEl.src = users.avatar;
+
     cards.forEach((item) => {
       const cardElement = getCardElement(item);
       cardsList.append(cardElement);
     });
   })
   .catch(console.error);
+
+const profilePhotoEl = document.querySelector(".profile__avatar");
 
 const editProfileBtn = document.querySelector(".profile__edit-btn");
 const editProfileModal = document.querySelector("#edit-profile-modal");
@@ -170,12 +177,19 @@ newPostCloseBtn.addEventListener("click", function () {
 
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
-
-  profileNameEl.textContent = editProfileNameInput.value;
-  profileDescriptionEl.textContent = editDescriptionInput.value;
-
-  closeModal(editProfileModal);
-  disableButton(editProfileSubmitBtn, settings);
+  api
+    .editUserInfo({
+      name: editProfileNameInput.value,
+      about: editDescriptionInput.value,
+    })
+    .then((data) => {
+      profileNameEl.textContent = data.name;
+      profileDescriptionEl.textContent = data.about;
+      profilePhotoEl.src = data.avatar;
+      closeModal(editProfileModal);
+      disableButton(editProfileSubmitBtn, settings);
+    })
+    .catch(console.error);
 }
 
 editProfileFormEl.addEventListener("submit", handleProfileFormSubmit);
