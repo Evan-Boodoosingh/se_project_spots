@@ -30,6 +30,7 @@
   padding: 32px 50px;
   position: relative;
   box-sizing: border-box;
+  position: relative;
 }
 
 .modal__close-btn {
@@ -42,6 +43,15 @@
   border: none;
   background-color: transparent;
   opacity: 40%;
+}
+
+.modal__close-btn_delete{
+  position: absolute;
+  left: calc(100% + 12px);
+  top: 133px;
+  background-image: url(../images/white-x.svg);
+ opacity: 100%;
+
 }
 
 .modal__close-btn_type_preview {
@@ -71,6 +81,13 @@
 .modal__form {
   display: flex;
   flex-direction: column;
+}
+
+.modal__form_delete{
+  flex-direction: row;
+  justify-content: center;
+  gap: 20px
+
 }
 
 .modal__lable {
@@ -139,6 +156,28 @@ opacity: 50%;
 .modal__submit-btn:hover {
   cursor: pointer;
   background-color: #212121cc;
+}
+
+
+.modal__submit-btn-delete{
+  background-color:#FF6565;
+  color: #212121;
+  border: none;
+}
+
+.modal__submit-btn-cancle{
+background-color: transparent;
+border: 1px solid #212121;
+color: #212121;
+}
+
+.modal__submit-btn-cancle:hover{
+  background-color: #212121;
+  color: #ffffff;
+}
+
+.modal__submit-btn-delete:hover{
+  background-color: #FF3333;
 }
 
 .modal__image-container {

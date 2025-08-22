@@ -105,6 +105,8 @@ const previewCaptionEl = previewModal.querySelector(".modal__caption");
 const profileNameEl = document.querySelector(".profile__name");
 const profileDescriptionEl = document.querySelector(".profile__description");
 
+const deleteModal = document.querySelector("#delete-avatar-modal")
+
 const cardTemplate = document
   .querySelector("#card-template")
   .content.querySelector(".card");
@@ -127,8 +129,7 @@ function getCardElement(data) {
 
   const cardDeleteBtnEl = cardElement.querySelector(".card__delete-btn");
   cardDeleteBtnEl.addEventListener("click", () => {
-    cardElement.remove();
-    cardElement = null;
+  openModal(deleteModal)
   });
 
   cardImageEl.addEventListener("click", () => {
