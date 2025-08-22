@@ -106,6 +106,12 @@ const profileNameEl = document.querySelector(".profile__name");
 const profileDescriptionEl = document.querySelector(".profile__description");
 
 const deleteModal = document.querySelector("#delete-avatar-modal")
+const deleteModalCloseBtn = deleteModal.querySelector(".modal__close-btn_delete")
+const cancelDeleteBtn = deleteModal.querySelector(".modal__submit-btn-cancle")
+
+cancelDeleteBtn.addEventListener("click", function () {
+  closeModal(deleteModal);
+});
 
 const cardTemplate = document
   .querySelector("#card-template")
@@ -187,6 +193,9 @@ profileEditAvatarBtn.addEventListener("click", function () {
 });
 avatarModalCloseBtn.addEventListener("click", function () {
   closeModal(editAvatarModal);
+});
+deleteModalCloseBtn.addEventListener("click", function () {
+  closeModal(deleteModal);
 });
 
 function handleProfileFormSubmit(evt) {

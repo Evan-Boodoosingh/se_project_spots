@@ -48,10 +48,15 @@
 .modal__close-btn_delete{
   position: absolute;
   left: calc(100% + 12px);
-  top: 133px;
+  top: 0px;
   background-image: url(../images/white-x.svg);
  opacity: 100%;
+ padding: 0px;
 
+}
+
+.modal__close-btn_delete:hover{
+  cursor: pointer;
 }
 
 .modal__close-btn_type_preview {
