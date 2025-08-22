@@ -48,7 +48,7 @@ class Api {
   //     return this._handleServerResponse(res);
   //   });
   // }
-  
+
   editUserAvatar({ avatar }) {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: "PATCH",
@@ -58,6 +58,13 @@ class Api {
         avatar,
       }),
     }).then(this._handleServerResponse);
+  }
+
+  deleteCard(cardId){
+    return fetch(`${this._baseUrl}/cards/${cardId}`, {
+      method: "delete",
+      headers: this._headers,
+    }) .then(this._handleServerResponse);
   }
 }
 

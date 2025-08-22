@@ -108,6 +108,16 @@ const profileDescriptionEl = document.querySelector(".profile__description");
 const deleteModal = document.querySelector("#delete-avatar-modal")
 const deleteModalCloseBtn = deleteModal.querySelector(".modal__close-btn_delete")
 const cancelDeleteBtn = deleteModal.querySelector(".modal__submit-btn-cancle")
+const deleteForm = deleteModal.querySelector(".modal__form")
+let deleteCardEl ;
+let deleteCardId ;
+
+deleteForm.addEventListener("submit", function (evt) {
+evt.preventDefault()
+api.deleteCard(deleteCardId).then(() => {
+  deleteCardEl.remove()
+})
+});
 
 cancelDeleteBtn.addEventListener("click", function () {
   closeModal(deleteModal);
@@ -135,6 +145,8 @@ function getCardElement(data) {
 
   const cardDeleteBtnEl = cardElement.querySelector(".card__delete-btn");
   cardDeleteBtnEl.addEventListener("click", () => {
+    deleteCardId = data._id
+    deleteCardEl = cardElement
   openModal(deleteModal)
   });
 
