@@ -95,7 +95,7 @@ const avatarModalCloseBtn = editAvatarModal.querySelector(".modal__close-btn");
 const profileEditAvatarBtn = document.querySelector(".profile__avatar-btn");
 const editAvatarFormEl = editAvatarModal.querySelector(".modal__form");
 const editAvatarSubmitBtn = editAvatarModal.querySelector(".modal__submit-btn");
-const editAvatarInput = editAvatarModal.querySelector("#avatar-link-input");
+const editAvatarInput = editAvatarModal.querySelector("#profile-avatar-input");
 
 const previewModal = document.querySelector("#preview-modal");
 const previewModalCloseBtn = previewModal.querySelector(".modal__close-btn");
@@ -156,6 +156,7 @@ function closeModal(modal) {
   document.removeEventListener("keydown", handleEscapeKey);
 }
 
+
 //function handleEscapeKey(event) {}
 
 editProfileBtn.addEventListener("click", function () {
@@ -191,8 +192,8 @@ function handleProfileFormSubmit(evt) {
   evt.preventDefault();
   api
     .editUserInfo({
-      name: editProfileNameInput.value,
-      about: editDescriptionInput.value,
+      name: editProfileNameInput.value, // Get the value from the profile name input field
+      about: editDescriptionInput.value, // Get the value from the profile description input field
     })
     .then((data) => {
       profileNameEl.textContent = data.name;
@@ -201,10 +202,27 @@ function handleProfileFormSubmit(evt) {
       closeModal(editProfileModal);
       disableButton(editProfileSubmitBtn, settings);
     })
-.catch(console.error);
-editAvatarInput.value = profilePhotoEl.src; // Set the initial value of the avatar input to the current profile photo URL
+    .catch(console.error);
+}
 
 editProfileFormEl.addEventListener("submit", handleProfileFormSubmit);
+editAvatarFormEl.addEventListener("submit", handleAvatarSubmit);
+
+function handleAvatarSubmit(evt) {
+  evt.preventDefault();
+
+  api
+    .editUserAvatar({
+      avatar: editAvatarInput.value,
+    })
+    .then((data) => {
+      profilePhotoEl.src = data.avatar;
+      closeModal(editAvatarModal);
+      evt.target.reset();
+      disableButton(editAvatarSubmitBtn, settings);
+    })
+    .catch(console.error);
+}
 
 function handleAddCardSubmit(evt) {
   evt.preventDefault();
@@ -223,43 +241,17 @@ function handleAddCardSubmit(evt) {
 }
 
 newPostFormEl.addEventListener("submit", handleAddCardSubmit);
+//---------------------------------
+// const editAvatarFormEl = editAvatarModal.querySelector(".modal__form");
+// const editAvatarSubmitBtn = editAvatarModal.querySelector(".modal__submit-btn");
+// const editAvatarInput = editAvatarModal.querySelector("#avatar-link-input");
 
-
-
-// ------------------------------------------------------------------------------------------------------
-// Handle the avatar form submission// This function updates the profile photo when the avatar form is submitted
-// It also resets the form
-// and disables the submit button to prevent multiple submissions
-// This function is called when the avatar form is submitted
-// It updates the profile photo with the new avatar URL
-// and resets the form
-// It also disables the submit button to prevent multiple submissions
-// editAvatarFormEl.addEventListener("submit", handleAvatarFormSubmit);
-// // const editAvatarFormEl = editAvatarModal.querySelector(".modal__form");
-// // const editAvatarSubmitBtn = editAvatarModal.querySelector(".modal__submit-btn");
-// // const editAvatarInput = editAvatarModal.querySelector("#avatar-link-input");
-// function handleAvatarFormSubmit(evt) {
-//   evt.preventDefault();
-//   api
-//     .editUserAvatar({ avatar: editAvatarInput.value })
-//     .then((data) => {
-//       profilePhotoEl.src = data.avatar;
-//       closeModal(editAvatarModal);
-//       editAvatarFormEl.reset();
-//       disableButton(editAvatarSubmitBtn, settings);
-//     })
-//     .catch(console.error);
-}
 
 // initialCards.forEach(function (item) {
 //   const cardElement = getCardElement(item);
 //   cardsList.append(cardElement);
 // });
 
-//can i make this a new independent function that i can assine to each individual modal and if so why would i do that
-//added like this becouse every time i hit escape it did not register on the modol onlythe input
-
-// pick up here to find out what modal is open and how to add it to handlEscapeKey function then pass that to open modle
 function handleEscapeKey(event) {
   if (event.key === "Escape") {
     const openedModal = document.querySelector(".modal_is-opened");

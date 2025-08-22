@@ -21,11 +21,13 @@ class Api {
     });
     return this._handleServerResponse(res);
   }
+
   getUserInfo() {
     return fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers,
     }).then(this._handleServerResponse);
   }
+
   editUserInfo({ name, about }) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
@@ -46,6 +48,7 @@ class Api {
   //     return this._handleServerResponse(res);
   //   });
   // }
+  
   editUserAvatar({ avatar }) {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: "PATCH",
