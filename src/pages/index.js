@@ -90,6 +90,12 @@ const newPostImageInput = newPostModal.querySelector("#card-image-input");
 const newPostDescriptionInput = newPostModal.querySelector(
   "#card-caption-input"
 );
+const editAvatarModal = document.querySelector("#edit-avatar-modal");
+const avatarModalCloseBtn = editAvatarModal.querySelector(".modal__close-btn");
+const profileEditAvatarBtn = document.querySelector(".profile__avatar-btn");
+const editAvatarFormEl = editAvatarModal.querySelector(".modal__form");
+const editAvatarSubmitBtn = editAvatarModal.querySelector(".modal__submit-btn");
+const editAvatarInput = editAvatarModal.querySelector("#avatar-link-input");
 
 const previewModal = document.querySelector("#preview-modal");
 const previewModalCloseBtn = previewModal.querySelector(".modal__close-btn");
@@ -174,6 +180,12 @@ newPostBtn.addEventListener("click", function () {
 newPostCloseBtn.addEventListener("click", function () {
   closeModal(newPostModal);
 });
+profileEditAvatarBtn.addEventListener("click", function () {
+  openModal(editAvatarModal);
+});
+avatarModalCloseBtn.addEventListener("click", function () {
+  closeModal(editAvatarModal);
+});
 
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
@@ -189,8 +201,8 @@ function handleProfileFormSubmit(evt) {
       closeModal(editProfileModal);
       disableButton(editProfileSubmitBtn, settings);
     })
-    .catch(console.error);
-}
+.catch(console.error);
+editAvatarInput.value = profilePhotoEl.src; // Set the initial value of the avatar input to the current profile photo URL
 
 editProfileFormEl.addEventListener("submit", handleProfileFormSubmit);
 
@@ -211,6 +223,33 @@ function handleAddCardSubmit(evt) {
 }
 
 newPostFormEl.addEventListener("submit", handleAddCardSubmit);
+
+
+
+// ------------------------------------------------------------------------------------------------------
+// Handle the avatar form submission// This function updates the profile photo when the avatar form is submitted
+// It also resets the form
+// and disables the submit button to prevent multiple submissions
+// This function is called when the avatar form is submitted
+// It updates the profile photo with the new avatar URL
+// and resets the form
+// It also disables the submit button to prevent multiple submissions
+// editAvatarFormEl.addEventListener("submit", handleAvatarFormSubmit);
+// // const editAvatarFormEl = editAvatarModal.querySelector(".modal__form");
+// // const editAvatarSubmitBtn = editAvatarModal.querySelector(".modal__submit-btn");
+// // const editAvatarInput = editAvatarModal.querySelector("#avatar-link-input");
+// function handleAvatarFormSubmit(evt) {
+//   evt.preventDefault();
+//   api
+//     .editUserAvatar({ avatar: editAvatarInput.value })
+//     .then((data) => {
+//       profilePhotoEl.src = data.avatar;
+//       closeModal(editAvatarModal);
+//       editAvatarFormEl.reset();
+//       disableButton(editAvatarSubmitBtn, settings);
+//     })
+//     .catch(console.error);
+}
 
 // initialCards.forEach(function (item) {
 //   const cardElement = getCardElement(item);

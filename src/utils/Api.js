@@ -24,9 +24,7 @@ class Api {
   getUserInfo() {
     return fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers,
-    }).then((res) => {
-      return this._handleServerResponse(res);
-    });
+    }).then(this._handleServerResponse);
   }
   editUserInfo({ name, about }) {
     return fetch(`${this._baseUrl}/users/me`, {
@@ -48,6 +46,16 @@ class Api {
   //     return this._handleServerResponse(res);
   //   });
   // }
+  editUserAvatar({ avatar }) {
+    return fetch(`${this._baseUrl}/users/me/avatar`, {
+      method: "PATCH",
+      headers: this._headers,
+      // Send the data in the body as a JSON string.
+      body: JSON.stringify({
+        avatar,
+      }),
+    }).then(this._handleServerResponse);
+  }
 }
 
 export default Api;
