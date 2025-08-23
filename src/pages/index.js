@@ -1,4 +1,5 @@
 import "./index.css";
+import "../utils/helpers.js";
 import {
   enableValidation,
   settings,
@@ -6,6 +7,7 @@ import {
   disableButton,
 } from "../scripts/validation.js";
 import Api from "../utils/Api.js";
+import { setButtonText, deleteButtonText } from "../utils/helpers.js";
 
 // const initialCards = [
 //   {
@@ -125,8 +127,8 @@ let deleteCardId;
 // then close the modal
 deleteForm.addEventListener("submit", function (evt) {
   evt.preventDefault();
-  const buttonText = deleteSubmitBtn.textContent; // Store original button text
-  deleteSubmitBtn.textContent = "Deleting..."; // Show loading state
+  const submitButton = evt.submitter; // Get the button that triggered the submit
+  deleteButtonText(submitButton, true); // Show loading state
 
   api
     .deleteCard(deleteCardId)
@@ -136,7 +138,7 @@ deleteForm.addEventListener("submit", function (evt) {
     })
     .catch(console.error)
     .finally(() => {
-      deleteSubmitBtn.textContent = buttonText; // Restore original button text
+      deleteButtonText(submitButton, false); // Restore original button text
     });
 });
 
@@ -240,8 +242,8 @@ deleteModalCloseBtn.addEventListener("click", function () {
 // Profile form submission with loading state
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
-  const buttonText = editProfileSubmitBtn.textContent; // Store original button text
-  editProfileSubmitBtn.textContent = "Saving..."; // Show loading state
+  const submitButton = evt.submitter; // Get the button that triggered the submit
+  setButtonText(submitButton, true);
 
   api
     .editUserInfo({
@@ -253,12 +255,12 @@ function handleProfileFormSubmit(evt) {
       profileNameEl.textContent = data.name;
       profileDescriptionEl.textContent = data.about;
       profilePhotoEl.src = data.avatar;
-      closeModal(editProfileModal);
       disableButton(editProfileSubmitBtn, settings);
+      closeModal(editProfileModal);
     })
     .catch(console.error)
     .finally(() => {
-      editProfileSubmitBtn.textContent = buttonText; // Restore original button text
+      setButtonText(submitButton, false);
     });
 }
 
@@ -268,9 +270,8 @@ editAvatarFormEl.addEventListener("submit", handleAvatarSubmit);
 // Avatar form submission with loading state
 function handleAvatarSubmit(evt) {
   evt.preventDefault();
-  const buttonText = editAvatarSubmitBtn.textContent; // Store original button text
-  editAvatarSubmitBtn.textContent = "Saving..."; // Show loading state
-
+  const submitButton = evt.submitter; // Get the button that triggered the submit
+  setButtonText(submitButton, true);
   api
     .editUserAvatar({
       avatar: editAvatarInput.value,
@@ -283,15 +284,15 @@ function handleAvatarSubmit(evt) {
     })
     .catch(console.error)
     .finally(() => {
-      editAvatarSubmitBtn.textContent = buttonText; // Restore original button text
+      setButtonText(submitButton, false); // Restore original button text
     });
 }
 
 // Add card form submission with loading state
 function handleAddCardSubmit(evt) {
   evt.preventDefault();
-  const buttonText = newPostSubmitBtn.textContent; // Store original button text
-  newPostSubmitBtn.textContent = "Saving..."; // Show loading state
+  const submitButton = evt.submitter;
+  setButtonText(submitButton, true);
 
   const inputValues = {
     name: newPostDescriptionInput.value,
@@ -301,15 +302,15 @@ function handleAddCardSubmit(evt) {
   api
     .addCards(inputValues)
     .then((data) => {
-      const cardElement = getCardElement(data);
-      cardsList.prepend(cardElement); // Add new card to top of list
+      const cardElement = getCardElement(data); // Create new card element
+      cardsList.prepend(cardElement); // Add it to the page immediately
       evt.target.reset();
       disableButton(newPostSubmitBtn, settings);
       closeModal(newPostModal);
     })
     .catch(console.error)
     .finally(() => {
-      newPostSubmitBtn.textContent = buttonText; // Restore original button text
+      setButtonText(submitButton, false);
     });
 }
 
@@ -352,3 +353,15 @@ modals.forEach((modal) => {
 });
 
 enableValidation(settings);
+
+// Utility function to set button text for loading state
+
+// function setButtonText(button, isLoading, defaultText = "Save", loadingText = "Saving...") {
+//   if (isLoading) {
+//     button.textContent = loadingText;
+//     // button.disabled = true;
+//   } else {
+//     button.textContent = defaultText;
+//     // button.disabled = false;
+//   }
+// }
