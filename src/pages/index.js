@@ -111,7 +111,11 @@ const cancelDeleteBtn = deleteModal.querySelector(".modal__submit-btn-cancle")
 const deleteForm = deleteModal.querySelector(".modal__form")
 let deleteCardEl ;
 let deleteCardId ;
-
+// this function will be called when the delete button is clicked
+// it will open the delete modal and set the card to be deleted
+// it will also set the card ID to be deleted
+// it will also set the card element to be deleted
+// then close the modal
 deleteForm.addEventListener("submit", function (evt) {
 evt.preventDefault()
 api.deleteCard(deleteCardId).then(() => {
@@ -129,7 +133,10 @@ const cardTemplate = document
   .content.querySelector(".card");
 
 const cardsList = document.querySelector(".cards__list");
-
+//this function will create a card element
+// it will return the card element
+//the card element will be populated with data
+//the card element will have event listeners for like, delete and preview
 function getCardElement(data) {
   let cardElement = cardTemplate.cloneNode(true);
   const cardTitleEl = cardElement.querySelector(".card__title");
@@ -165,6 +172,10 @@ previewModalCloseBtn.addEventListener("click", function () {
   closeModal(previewModal);
 });
 
+//this function will be called when the modal is opened
+// it will add the modal_is-opened class to the modal
+// it will also add event listeners for click and keydown
+// it will also set the modal to be closed when the overlay is clicked
 function openModal(modal) {
   modal.classList.add("modal_is-opened");
   document.addEventListener("keydown", handleEscapeKey);
