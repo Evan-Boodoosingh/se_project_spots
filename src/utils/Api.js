@@ -41,6 +41,20 @@ class Api {
       return this._handleServerResponse(res);
     });
   }
+
+  addCards({ name, link }) {
+    return fetch(`${this._baseUrl}/cards`, {
+      method: "POST",
+      headers: this._headers,
+      // Send the data in the body as a JSON string.
+      body: JSON.stringify({
+        name,
+        link,
+      }),
+    }).then((res) => {
+      return this._handleServerResponse(res);
+    });
+  }
   // getAvatarInfo() {
   //   return fetch(`${this._baseUrl}/users/me/avatar`, {
   //     headers: this._headers,
@@ -60,11 +74,11 @@ class Api {
     }).then(this._handleServerResponse);
   }
 
-  deleteCard(cardId){
+  deleteCard(cardId) {
     return fetch(`${this._baseUrl}/cards/${cardId}`, {
       method: "delete",
       headers: this._headers,
-    }) .then(this._handleServerResponse);
+    }).then(this._handleServerResponse);
   }
 }
 

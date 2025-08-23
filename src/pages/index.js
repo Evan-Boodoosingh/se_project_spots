@@ -116,6 +116,7 @@ deleteForm.addEventListener("submit", function (evt) {
 evt.preventDefault()
 api.deleteCard(deleteCardId).then(() => {
   deleteCardEl.remove()
+  closeModal(deleteModal)
 })
 });
 
@@ -253,13 +254,15 @@ function handleAddCardSubmit(evt) {
     name: newPostDescriptionInput.value,
     link: newPostImageInput.value,
   };
-
-  const cardElement = getCardElement(inputValues);
+api.addCards(inputValues).then((data) => {
+  const cardElement = getCardElement(data);
   cardsList.prepend(cardElement);
 
   evt.target.reset();
   disableButton(newPostSubmitBtn, settings);
   closeModal(newPostModal);
+})
+
 }
 
 newPostFormEl.addEventListener("submit", handleAddCardSubmit);
