@@ -82,6 +82,13 @@
   line-height: 1;
 }
 
+.modal__title-delete {
+  margin: 0 0 32px;
+  font-weight: 500;
+  font-size: 32px;
+  line-height: 1;
+}
+
 .modal__form {
   display: flex;
   flex-direction: column;
@@ -218,6 +225,12 @@
   .modal__title {
     font-size: 20px;
     padding-top: 10px;
+    /* text-align: center; */
+  }
+
+  .modal__title-delete {
+    font-size: 20px;
+    padding-top: 10px;
     text-align: center;
   }
 
@@ -268,6 +281,10 @@
     margin: 0 auto; /* Center the form in the modal */
     text-align: center; /* Center the text inside the form */
 
+  }
+
+  .profile__avatar{
+    background: none;
   }
 
   .profile__avatar-container {
