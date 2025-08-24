@@ -9,41 +9,6 @@ import {
 import Api from "../utils/Api.js";
 import { setButtonText, deleteButtonText } from "../utils/helpers.js";
 
-// const initialCards = [
-//   {
-//     name: "CoCo the CooCoo Cat!",
-//     link: "https://lh3.googleusercontent.com/d/1LyIo52cf-KpSJAhErnJ0zx4lZV6JCa_S",
-//   },
-//   {
-//     name: "Gucci got money!",
-//     link: "https://lh3.googleusercontent.com/d/1lyPfagxVRzBso9HMW7jbCjrDJTs-n_K2",
-//   },
-
-//   {
-//     name: "Best Birthday Yet!",
-//     link: "https://lh3.googleusercontent.com/d/1ZnhMGXnS83fbill3s2umN2FDBsHcYJci",
-//   },
-
-//   {
-//     name: "Korra the Dog.",
-//     link: "https://lh3.googleusercontent.com/d/1Wg3tQj48Funmuebkpfpa492sd3Stez2g",
-//   },
-
-//   {
-//     name: "Flowing through space and time.",
-//     link: "https://lh3.googleusercontent.com/d/1eaP1R2swi3v3l9Nqwo2dsw6m2NfzqlWk",
-//   },
-
-//   {
-//     name: "I think we found a spellbook...",
-//     link: "https://lh3.googleusercontent.com/d/13i49W5fGNremTb95izNCElcjEeazrjkW",
-//   },
-
-//   {
-//     name: "My spooky family!",
-//     link: "https://lh3.googleusercontent.com/d/1MbKOi435wYzyexfZ1gmh4HOffkG6fhqU",
-//   },
-// ];
 
 const api = new Api({
   baseUrl: "https://around-api.en.tripleten-services.com/v1",
@@ -323,15 +288,7 @@ function handleAddCardSubmit(evt) {
 }
 
 newPostFormEl.addEventListener("submit", handleAddCardSubmit);
-//---------------------------------
-// const editAvatarFormEl = editAvatarModal.querySelector(".modal__form");
-// const editAvatarSubmitBtn = editAvatarModal.querySelector(".modal__submit-btn");
-// const editAvatarInput = editAvatarModal.querySelector("#avatar-link-input");
 
-// initialCards.forEach(function (item) {
-//   const cardElement = getCardElement(item);
-//   cardsList.append(cardElement);
-// });
 
 function handleEscapeKey(event) {
   if (event.key === "Escape") {
@@ -341,15 +298,7 @@ function handleEscapeKey(event) {
   }
 }
 
-// document.addEventListener("keyup", function (event) {
-// if (event.key === "Escape") {
-// const openedModal = document.querySelector(".modal_is-opened");
 
-// closeModal(openedModal);
-// }
-// });
-
-// i think that this selects aall modals and not the container
 const modals = document.querySelectorAll(".modal");
 
 modals.forEach((modal) => {
@@ -362,14 +311,3 @@ modals.forEach((modal) => {
 
 enableValidation(settings);
 
-// Utility function to set button text for loading state
-
-// function setButtonText(button, isLoading, defaultText = "Save", loadingText = "Saving...") {
-//   if (isLoading) {
-//     button.textContent = loadingText;
-//     // button.disabled = true;
-//   } else {
-//     button.textContent = defaultText;
-//     // button.disabled = false;
-//   }
-// }
