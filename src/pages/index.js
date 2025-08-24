@@ -155,18 +155,29 @@ const cardsList = document.querySelector(".cards__list");
 // it will return the card element
 //the card element will be populated with data
 //the card element will have event listeners for like, delete and preview
+function handleLike(evt, data) {
+  const isLiked = evt.target.classList.contains("card__like-btn_active");
+  api
+    .changeLikeStatus(data._id, isLiked)
+    .then(() => evt.target.classList.toggle("card__like-btn_active"));
+}
+
 function getCardElement(data) {
   let cardElement = cardTemplate.cloneNode(true);
   const cardTitleEl = cardElement.querySelector(".card__title");
   const cardImageEl = cardElement.querySelector(".card__image");
+  const cardLikeBtnEl = cardElement.querySelector(".card__like-btn");
 
   cardImageEl.src = data.link;
   cardImageEl.alt = data.name;
   cardTitleEl.textContent = data.name;
 
-  const cardLikeBtnEl = cardElement.querySelector(".card__like-btn");
-  cardLikeBtnEl.addEventListener("click", () => {
-    cardLikeBtnEl.classList.toggle("card__like-btn_active");
+  if (data.isLiked) {
+    cardLikeBtnEl.classList.add("card__like-btn_active");
+  }
+
+  cardLikeBtnEl.addEventListener("click", (evt) => {
+    handleLike(evt, data);
   });
 
   const cardDeleteBtnEl = cardElement.querySelector(".card__delete-btn");
@@ -308,10 +319,7 @@ function handleAddCardSubmit(evt) {
       disableButton(newPostSubmitBtn, settings);
       closeModal(newPostModal);
     })
-    .catch(console.error)
-    .finally(() => {
-      setButtonText(submitButton, false);
-    });
+    .catch(console.error);
 }
 
 newPostFormEl.addEventListener("submit", handleAddCardSubmit);

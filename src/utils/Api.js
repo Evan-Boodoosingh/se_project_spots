@@ -55,6 +55,36 @@ class Api {
       return this._handleServerResponse(res);
     });
   }
+
+  // likeCard(cardId) {
+  //   return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
+  //     method: "POST",
+  //     headers: this._headers,
+  //   }).then((res) => {
+  //     return this._handleServerResponse(res);
+  //   });
+  // }
+  // unlikeCard(cardId) {
+  //   return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
+  //     method: "DELETE",
+  //     headers: this._headers,
+  //   }).then(this._handleServerResponse);
+  // }
+
+  changeLikeStatus(cardId, isLiked) {
+   return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
+      method: isLiked ? "DELETE" : "PUT",
+      headers: this._headers,
+    }).then(this._handleServerResponse);
+
+  }
+  // changelikeCard(cardId, method) {
+  //   return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
+  //     method: method,
+  //     headers: this._headers,
+  //   }).then(this._handleServerResponse);
+  // }
+
   // getAvatarInfo() {
   //   return fetch(`${this._baseUrl}/users/me/avatar`, {
   //     headers: this._headers,
