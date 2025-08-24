@@ -218,6 +218,7 @@
   .modal__title {
     font-size: 20px;
     padding-top: 10px;
+    text-align: center;
   }
 
   .modal__input {
@@ -266,6 +267,12 @@
     /* max-width: 220px; Optional: controls modal width on mobile */
     margin: 0 auto; /* Center the form in the modal */
     text-align: center; /* Center the text inside the form */
-    
+
+  }
+
+  .profile__avatar-container {
+    overflow: hidden;
+    background: none; /* Remove gray background on mobile */
+    margin: 0px;
   }
 }
