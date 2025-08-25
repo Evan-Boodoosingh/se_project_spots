@@ -9,7 +9,6 @@ import {
 import Api from "../utils/Api.js";
 import { setButtonText, deleteButtonText } from "../utils/helpers.js";
 
-
 const api = new Api({
   baseUrl: "https://around-api.en.tripleten-services.com/v1",
   headers: {
@@ -284,11 +283,13 @@ function handleAddCardSubmit(evt) {
       disableButton(newPostSubmitBtn, settings);
       closeModal(newPostModal);
     })
-    .catch(console.error);
+    .catch(console.error)
+    .finally(() => {
+      setButtonText(submitButton, false); // Restore original button text
+    });
 }
 
 newPostFormEl.addEventListener("submit", handleAddCardSubmit);
-
 
 function handleEscapeKey(event) {
   if (event.key === "Escape") {
@@ -297,7 +298,6 @@ function handleEscapeKey(event) {
     closeModal(openedModal);
   }
 }
-
 
 const modals = document.querySelectorAll(".modal");
 
@@ -310,4 +310,3 @@ modals.forEach((modal) => {
 });
 
 enableValidation(settings);
-
