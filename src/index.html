@@ -20,11 +20,20 @@
       </header>
       <main class="content">
         <section class="profile page__section">
-          <img
-            src="https://lh3.googleusercontent.com/d/109JkZTZPWOjN-5DzGvjD6t_gOrwS8KWv"
-            alt="Evan Boodoosingh"
-            class="profile__avatar"
-          />
+          <div class="profile__avatar-container">
+            <img
+              src="https://lh3.googleusercontent.com/d/109JkZTZPWOjN-5DzGvjD6t_gOrwS8KWv"
+              alt="Evan Boodoosingh"
+              class="profile__avatar"
+            />
+            <button class="profile__avatar-btn">
+              <img
+                src="<%=require('./images/pen-white.svg')%>"
+                alt="white pencil"
+                class="profile__avatar-btn-image"
+              />
+            </button>
+          </div>
           <div class="profile__column">
             <h1 class="profile__name">Evan Boodoosingh</h1>
             <p class="profile__description">Software Engineer</p>
@@ -126,6 +135,41 @@
               <span id="card-caption-input-error" class="modal__error"></span>
             </label>
             <button type="submit" class="modal__submit-btn">Save</button>
+          </form>
+        </div>
+      </div>
+
+       <div class="modal" id="edit-avatar-modal">
+        <div class="modal__container">
+          <div class="button__overlay">
+          <button type="button" class="modal__close-btn"></button>
+          </div>
+          <h2 class="modal__title-avatar">Edit profile avatar</h2>
+          <form class="modal__form" id="edit-profile-form" novalidate>
+            <label for="profile-avatar-input" class="modal__lable">
+              Profile Picture
+              <input
+                id="profile-avatar-input"
+                type="text"
+                class="modal__input"
+                placeholder="Paste a link to an image"
+                minlength="2"
+                required
+              />
+              <span id="profile-avatar-input-error" class="modal__error"></span>
+            </label>
+            <button type="submit" class="modal__submit-btn">Save</button>
+          </form>
+        </div>
+      </div>
+
+       <div class="modal"  id="delete-avatar-modal">
+        <div class="modal__container">
+          <button type="button" class="modal__close-btn modal__close-btn_delete"></button>
+          <h2 class="modal__title-delete">Are you sure you want to delete this image?</h2>
+          <form class="modal__form modal__form_delete" id="delete-avatar-form" novalidate>
+            <button type="submit" class="modal__submit-btn modal__submit-btn-delete">Delete</button>
+            <button type="button" class="modal__submit-btn modal__submit-btn-cancle">Cancel</button>
           </form>
         </div>
       </div>

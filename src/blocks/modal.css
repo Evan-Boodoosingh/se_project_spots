@@ -30,6 +30,7 @@
   padding: 32px 50px;
   position: relative;
   box-sizing: border-box;
+  position: relative;
 }
 
 .modal__close-btn {
@@ -42,6 +43,19 @@
   border: none;
   background-color: transparent;
   opacity: 40%;
+}
+
+.modal__close-btn_delete {
+  position: absolute;
+  left: calc(100% + 12px);
+  top: 0px;
+  background-image: url(../images/white-x.svg);
+  opacity: 100%;
+  padding: 0px;
+}
+
+.modal__close-btn_delete:hover {
+  cursor: pointer;
 }
 
 .modal__close-btn_type_preview {
@@ -68,9 +82,25 @@
   line-height: 1;
 }
 
+.modal__title-delete {
+  margin: 0 0 32px;
+  font-weight: 500;
+  font-size: 32px;
+  line-height: 1;
+}
+
 .modal__form {
   display: flex;
   flex-direction: column;
+}
+
+.modal__form_delete {
+  flex-direction: column;
+  align-items: center; /* Center buttons and text horizontally */
+  gap: 12px;
+  max-width: 220px; /* Optional: controls modal width on mobile */
+  margin: 0 auto; /* Center the form in the modal */
+  text-align: center; /* Center the text inside the form */
 }
 
 .modal__lable {
@@ -96,7 +126,7 @@
 }
 
 .modal__input_type_error {
-  border: 1px solid #FF000099;
+  border: 1px solid #ff000099;
 }
 
 .modal__input:hover {
@@ -132,13 +162,34 @@
   border: 1px solid;
 }
 
-.modal__submit-btn_disabled{
-opacity: 50%;
+.modal__submit-btn_disabled {
+  opacity: 50%;
 }
 
 .modal__submit-btn:hover {
   cursor: pointer;
   background-color: #212121cc;
+}
+
+.modal__submit-btn-delete {
+  background-color: #ff6565;
+  color: #212121;
+  border: none;
+}
+
+.modal__submit-btn-cancle {
+  background-color: transparent;
+  border: 1px solid #212121;
+  color: #212121;
+}
+
+.modal__submit-btn-cancle:hover {
+  background-color: #212121;
+  color: #ffffff;
+}
+
+.modal__submit-btn-delete:hover {
+  background-color: #ff3333;
 }
 
 .modal__image-container {
@@ -174,6 +225,13 @@ opacity: 50%;
   .modal__title {
     font-size: 20px;
     padding-top: 10px;
+    /* text-align: center; */
+  }
+
+  .modal__title-delete {
+    font-size: 20px;
+    padding-top: 10px;
+    text-align: center;
   }
 
   .modal__input {
@@ -202,4 +260,27 @@ opacity: 50%;
   .modal__image {
     max-width: unset;
   }
+
+  /* .modal__submit-btn-delete {
+    padding: 14px 0;
+    font-size: 14px;
+    max-width: none;
+  }
+
+  .modal__submit-btn-cancle {
+    padding: 14px 0;
+    font-size: 14px;
+    max-width: none;
+  } */
+
+  .modal__form_delete {
+    flex-direction: column;
+    align-items: center; /* Center buttons and text horizontally */
+    gap: 12px;
+    /* max-width: 220px; Optional: controls modal width on mobile */
+    margin: 0 auto; /* Center the form in the modal */
+    text-align: center; /* Center the text inside the form */
+  }
+
+  
 }
